@@ -4,8 +4,8 @@
 
 |**Módulo**|**Técnologia**|**Justificativa**|
 |--|--|--|
-| Tests Resolver | Rust | Multiplataforma, confiabilidade |
-| Rastreador de Eventos  | Rust | Multiplataforma, confiabilidade  |
+| Tests Resolver | Rust (ou JS para o MVP) | Multiplataforma, confiabilidade |
+| Rastreador de Eventos  | Rust (ou JS para o MVP) | Multiplataforma, confiabilidade  |
 | Endpoints | NodeJS | Escalabilidade, agilidade de desenvolvimento, Simultaneidade (concurrency)|
 | BD (Testes, eventos, estatisticas) | Postgress | Adaptabilidade, ACID (Atomicity, Consistency, Isolation, Durability) |
 | Dashboard | ReactJS | Client-side rendering |
