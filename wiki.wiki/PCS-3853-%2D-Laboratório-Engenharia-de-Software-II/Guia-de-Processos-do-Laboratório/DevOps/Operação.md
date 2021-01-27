@@ -1,0 +1,1 @@
+![Operação.png](/.attachments/Operação-bbb592de-981b-42e4-b960-6bef7ac042fe.png)

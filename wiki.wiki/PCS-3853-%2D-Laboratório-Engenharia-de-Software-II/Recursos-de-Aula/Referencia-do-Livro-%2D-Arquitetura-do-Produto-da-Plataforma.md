@@ -1,0 +1,1 @@
+Leitura do Capitulo 1 do Livro Tiwana, A. (2013). Platform ecosystems: Aligning architecture, governance, and strategy. Newnes.
