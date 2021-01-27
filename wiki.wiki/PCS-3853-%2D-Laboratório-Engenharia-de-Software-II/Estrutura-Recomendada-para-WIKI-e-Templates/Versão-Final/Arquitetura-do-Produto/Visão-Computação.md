@@ -19,4 +19,4 @@ Classificação dos elementos de processamento em níveis corporativos (operacio
 
 Arquitetura em camadas
 
-![Diagrama de pacotes LS II.png](/.attachments/Diagrama%20de%20pacotes%20LS%20II-11d6c6fc-e527-42ce-8c52-1746e759227b.png)
+![Diagrama de pacotes LS II.png](/.attachments/Diagrama%20de%20pacotes%20LS%20II-190d1305-89a9-4e78-9c6f-3d5d7c091fbb.png)
