@@ -18,5 +18,5 @@ Classificação dos elementos de processamento em níveis corporativos (operacio
 | Analisador de resultados machine learning |  |  | 
 
 Arquitetura em camadas
-Dever apresentar os elementos de processamento e dispostos nas camadas corporativas 
-Utilize um diagrama de pacotes
+
+![Diagrama de pacotes LS II.png](/.attachments/Diagrama%20de%20pacotes%20LS%20II-11d6c6fc-e527-42ce-8c52-1746e759227b.png)
