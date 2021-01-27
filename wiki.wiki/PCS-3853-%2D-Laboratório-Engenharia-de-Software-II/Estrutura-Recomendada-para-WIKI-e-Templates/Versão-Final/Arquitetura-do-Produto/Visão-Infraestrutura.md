@@ -2,6 +2,16 @@
 
 Objetivo: Identificar e especificar os recursos para a interação entre os elementos de processamento em um ambiente de aplicações distribuídas.
 
+Teremos diferentes interações:
+
+- Tests Resolver <-> Backend (DB) de testes (read-only?)
+- Rastreador de Eventos <-> Backend (DB) de Eventos (write-only)
+- Dashboard <-> Backend de estatistica (read-only)
+- Painel de testes <-> Backend de testes (read and write)
+- Engine de estatistica <-> Backend de Eventos e de Testes (read) backend de estatística 
+- Todos os backends precisam de métodos de autenticação (LGPD)
+- Cache no backend de estatistica e de testes
+
 
 Tarefas
 1. Para cada elemento de processamento 
@@ -9,9 +19,11 @@ Tarefas
 3. Especifique os elementos de comunicação e recursos computacionais
 4. Preencha a tabela a seguir
 
-|Elemento de Processamento|Recursos computacionais|Elemento de Comunicação|
+|**Elemento de Processamento**|**Recursos computacionais**|**Elemento de Comunicação**|
 |--|--|--|
-|  |  |  |
+| Autenticador | Poucos | Presente em todos os endpoints do BE |
+| Cache de dados | Memória, quanto mais melhor | Para oferecermos mais velocidade ao microsserviço quando este acessar o BD |
+| Engine de Estatistica | Muitos | Analise automatizada dos resultados dos testes |
 |  |  |  |
 
 5. Identifique os elemento de processamento que precisam de funções da infraestrutura, que são: gerenciamento, coordenação, repositório, segurança
@@ -20,7 +32,7 @@ Tarefas
 
 
 
-| Elemento de Processamento |Tipo de Função | Descrição  | Justificativa | 
+|**Elemento de Processamento**|**Tipo de Função**|**Descrição**|**Justificativa**| 
 |--|--|--|--|
 |  |  |  |  |
 |  |  |  |  |
