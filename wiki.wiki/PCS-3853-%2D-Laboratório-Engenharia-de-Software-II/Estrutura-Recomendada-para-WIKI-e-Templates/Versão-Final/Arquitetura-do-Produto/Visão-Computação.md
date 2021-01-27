@@ -13,9 +13,9 @@ Classificação dos elementos de processamento em níveis corporativos (operacio
 
 |Operacional| Gerencial  | Estratégico  |
 |--|--|--|
-|  |  |  |
-|  |  |  |
-|  |  |  | 
+| Módulo resolvedor | Gerenciador de elementos testados | Dashboard |
+| Rastreador de eventos |  |  |
+| Analisador de resultados machine learning |  |  | 
 
 Arquitetura em camadas
 Dever apresentar os elementos de processamento e dispostos nas camadas corporativas 
