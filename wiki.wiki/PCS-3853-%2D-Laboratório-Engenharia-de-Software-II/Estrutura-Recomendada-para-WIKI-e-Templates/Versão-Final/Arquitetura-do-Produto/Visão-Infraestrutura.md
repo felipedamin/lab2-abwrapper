@@ -2,16 +2,6 @@
 
 Objetivo: Identificar e especificar os recursos para a interação entre os elementos de processamento em um ambiente de aplicações distribuídas.
 
-Teremos diferentes interações:
-
-- Tests Resolver <-> Backend (DB) de testes (read-only?)
-- Rastreador de Eventos <-> Backend (DB) de Eventos (write-only)
-- Dashboard <-> Backend de estatistica (read-only)
-- Painel de testes <-> Backend de testes (read and write)
-- Engine de estatistica <-> Backend de Eventos e de Testes (read) backend de estatística 
-- Todos os backends precisam de métodos de autenticação (LGPD)
-- Cache no backend de estatistica e de testes
-
 
 Tarefas
 1. Para cada elemento de processamento 
@@ -21,10 +11,11 @@ Tarefas
 
 |**Elemento de Processamento**|**Recursos computacionais**|**Elemento de Comunicação**|
 |--|--|--|
-| Autenticador | Poucos | Presente em todos os endpoints do BE |
-| Cache de dados | Memória, quanto mais melhor | Para oferecermos mais velocidade ao microsserviço quando este acessar o BD |
-| Engine de Estatistica | Muitos | Analise automatizada dos resultados dos testes |
-|  |  |  |
+| Módulo Resolvedor | Servidor leve, mas com alta simultaneidade de conexões | Endpoints em nosso backend definem qual teste será exibido para o usuário |
+| Rastreador de Eventos | Servidor leve, mas com alta simultaneidade de conexões | Endpoints em nosso backend salvam as informações sobre os eventos que o usuário emitiu |
+| Engine de Estatistica | Muitos | Aceita inputs do dashboard, comunica-se com os outros microsserviços, gera informações estatisticas |
+| Dashboard | Precisa suportar diversos acessos simultâneos | client-server, exibe informações sobre os testes/eventos |
+| Gerenciador de elementos testados | Precisa suportar diversos acessos simultâneos | client-server, exibe e permite alteração das informações sobre os testes |
 
 5. Identifique os elemento de processamento que precisam de funções da infraestrutura, que são: gerenciamento, coordenação, repositório, segurança
 6. Descreve para cada elemento de processamento as funções necessárias
@@ -34,10 +25,11 @@ Tarefas
 
 |**Elemento de Processamento**|**Tipo de Função**|**Descrição**|**Justificativa**| 
 |--|--|--|--|
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
+| Módulo Resolvedor | repositório e segurança | Armazena e serve dados relacionados aos testes | Necessita de autenticação |
+| Rastreador de Eventos | repositório e segurança | Armazena e serve dados relacionados aos eventos | Necessita de autenticação |
+| Engine de Estatistica | gerenciamento | gerencia os programas de análise de dados | autoexplicativo |
+| Dashboard | coordenação | exibe informaçoes e aceita inputs sobre a execução de análises | autoexplicativo |
+| Gerenciador de elementos testados | coordenação | exibe informações e aceita input sobre os testes | autoexplicativo |
 
 8. Revise e Publique na WIKI
 
