@@ -13,5 +13,5 @@ Tabela Agentes X Processos de Negócio
 |Gerencial|PM/PO|Decisão final de produto|
 
 Modelo de Processo de Negócio
-Coloque aqui o BPMN do Processo
+![Screen Shot 2021-01-27 at 17.49.38.png](/.attachments/Screen%20Shot%202021-01-27%20at%2017.49.38-bfac5a82-9b75-434e-bdb1-237ea07dd950.png)
 
