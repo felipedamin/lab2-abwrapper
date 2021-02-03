@@ -21,7 +21,9 @@ Tabela de Informação Classificada em níveis corporativos (operacional, gerenc
 
 |Operacional| Gerencial  | Estratégico  |
 |--|--|--|
-| Informação A | Informação F | Informação D |
-| Informação C | Informação B | Informação F |
-| Informação L | Informação H |  | 
-| Informação K | |  | |
+| Dados de usabilidade | Hipóteses validadas | 	Especificação produto final |
+| Decisão de melhora em design | Resultados teste A/B | Informação F |
+| Ticket para implementação | Variáveis externas| Reespecificação do design | 
+| Ticket fechado | |  | |
+| Mappings para usuários | |  | |
+| Ativar/Desativar flag | |  | |
