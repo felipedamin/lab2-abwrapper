@@ -17,6 +17,6 @@ router.use(
 router.get('/', db.getAllEvents)
 router.get('/now', db.getNow)
 router.get('/:id', db.getEventById)
-router.post('/register', db.registerEvent)
+router.post('/track', db.registerEvent)
 
 module.exports = router;
