@@ -1,6 +1,6 @@
 var express = require('express');
 const bodyParser = require('body-parser');
-const db = require('../db/queries');
+const db = require('../db/events');
 var router = express.Router();
 
 router.use(bodyParser.json())
@@ -14,10 +14,9 @@ router.use(
 //   response.json({ info: 'Node.js, Express, and Postgres API' })
 // })
 
-router.get('/users', db.getUsers)
-router.get('/users/:id', db.getUserById)
-router.post('/users', db.createUser)
-router.put('/users/:id', db.updateUser)
-router.delete('/users/:id', db.deleteUser)
+router.get('/', db.getAllEvents)
+router.get('/now', db.getNow)
+router.get('/:id', db.getEventById)
+router.post('/register', db.registerEvent)
 
 module.exports = router;

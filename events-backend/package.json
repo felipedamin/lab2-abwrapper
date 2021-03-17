@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js",
+    "dev": "node app.js",
     "debug": "DEBUG=myapp:* npm start",
     "debug-windows": "set DEBUG=myapp:* & npm start"
   },
