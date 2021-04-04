@@ -123,14 +123,14 @@ export default function Dashboard() {
             <CardHeader color="danger">
               <ChartistGraph
                 className="ct-chart"
-                data={completedTasksChart.data}
+                data={completedTasksChart().data}
                 type="Line"
-                options={completedTasksChart.options}
-                listener={completedTasksChart.animation}
+                options={completedTasksChart().options}
+                listener={completedTasksChart().animation}
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Products Viewed in Group A</h4>
+              <h4 className={classes.cardTitle}>Grafico do beo</h4>
               <p className={classes.cardCategory}>Last Campaign Performance</p>
             </CardBody>
             <CardFooter chart>
