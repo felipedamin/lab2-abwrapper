@@ -1,4 +1,4 @@
-import postEvent from './postEvent';
+import { postEvent } from './postEvent';
 import { getTests, getGroup } from './fetchTests';
 
 export const init = async (customer_name, user_id) => {
@@ -17,14 +17,14 @@ export const init = async (customer_name, user_id) => {
 }
 
 export const track = async (event_name) => {
-  let group = localStorage.getItem(group);
-  let user_id = localStorage.getItem(user_id);
+  let group = localStorage.getItem('group');
+  let user_id = localStorage.getItem('user_id');
 
   return await postEvent(event_name, group, user_id);
 }
 
 export const getAllTests = async () => {
-  let customer_name = localStorage.getItem(customer_name);
+  let customer_name = localStorage.getItem('customer_name');
 
   return await getTests(customer_name)
 }
