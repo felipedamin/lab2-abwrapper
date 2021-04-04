@@ -1,6 +1,5 @@
 const express = require('express')
 var cors = require('cors')
-var indexRouter = require('./src/routes/index');
 var usersRouter = require('./src/routes/users');
 var eventsRouter = require('./src/routes/events');
 
@@ -12,7 +11,10 @@ app.get('/hello', (req, res) => {
   res.send('Hello World!')
 })
 
-app.use('/', indexRouter);
+app.get('/', function(req, res) {
+  res.send('index page');
+});
+
 app.use('/users', usersRouter);
 app.use('/events', eventsRouter);
 

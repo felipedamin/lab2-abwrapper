@@ -8,16 +8,19 @@ const pool = new Pool({
   host: 'projetochave.c4vuzhkd82sl.sa-east-1.rds.amazonaws.com',
   port: 5432,
   idleTimeoutMillis: 30000,
-  //idleTimeoutMillis: 0,
   connectionTimeoutMillis: 30000,
 })
 
 module.exports = {
-  query: (text, params, callback) => {
-    try {
-      return pool.query(text, params, callback);
-    } catch(err) {
-      console.log(err);
-    }
-  },
+  query: (queryText, params) => {
+    return new Promise((resolve, reject) => {
+      pool.query(queryText, params)
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
 }
