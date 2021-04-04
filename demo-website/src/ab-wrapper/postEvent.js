@@ -1,4 +1,5 @@
-const EVENTS_BE_URL = 'ec2-52-86-73-127.compute-1.amazonaws.com';
+import axios from 'axios';
+const EVENTS_BE_URL = 'http://ec2-52-86-73-127.compute-1.amazonaws.com:3001';
 
 export const postEvent = async (name, group, user_id) => {
   try {
@@ -10,7 +11,7 @@ export const postEvent = async (name, group, user_id) => {
     let event = {
       'name': name,
       'test_group': group,  // must get from fetchTests
-      'attributes': user_id // nothing for now - MVP
+      'attributes': user_id // should rename this column on our DB
     }
     const response = await axios.post(`${EVENTS_BE_URL}/events/track`, event);
     const newEventResponse = response.data;

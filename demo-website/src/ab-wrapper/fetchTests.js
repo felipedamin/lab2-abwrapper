@@ -1,4 +1,5 @@
-const TESTS_BE_URL = 'https://jsonplaceholder.typicode.com';
+import axios from 'axios';
+const TESTS_BE_URL = 'http://ec2-52-86-73-127.compute-1.amazonaws.com:3002';
 
 export const getTests = async (customer_name) => {
   try {
@@ -18,7 +19,7 @@ export const getGroup = async (customer_name, id) => {
     const group = response.data;
 
     console.log(`GET: user group: `, group);
-    return tests;
+    return group;
   } catch (errors) {
     console.error(errors);
   }
