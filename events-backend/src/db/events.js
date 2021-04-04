@@ -1,6 +1,12 @@
 const db = require('../db')
 
 // GET
+const getNow = (request, response) => {
+  now = new Date();
+  response.status(200).json(now)
+}
+
+// GET
 const getAllEvents = (request, response) => {
   db.query('SELECT * FROM events ORDER BY id ASC', (error, results) => {
     if (error) {
@@ -9,12 +15,6 @@ const getAllEvents = (request, response) => {
     }
     response.status(200).json(results.rows)
   })
-}
-
-// GET
-const getNow = (request, response) => {
-  now = new Date();
-  response.status(200).json(now)
 }
 
 // GET
@@ -34,7 +34,7 @@ const registerEvent = (request, response) => {
   const { event_name, test_group, attributes } = request.body
   now = new Date();
 
-  db.query('INSERT INTO events (event_name, test_group, attributes, time) VALUES ($1, $2, $3, $4)', [event_name, test_group, attributes, now], (error, results) => {
+  db.query('INSERT INTO events (event_name, test_group, attributes, created_on) VALUES ($1, $2, $3, $4)', [event_name, test_group, attributes, now], (error, results) => {
     if (error) {
       throw error
     }
