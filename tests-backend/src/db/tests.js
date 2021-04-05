@@ -1,4 +1,5 @@
-const db = require('.')
+const db = require('.');
+const utils = require('../utils');
 
 // GET
 const getNow = (request, response) => {
@@ -39,7 +40,6 @@ const getTestGroupForUser = (request, response) => {
     if (error) {
       throw error
     }
-    console.log(results.rows);
 
     // let filteredResults = results.rows;
     // let filteredResults = results.rows.filter((elem) => elem.attributes.userId == userId && elem.attributes.customerName == customerName);
@@ -48,8 +48,11 @@ const getTestGroupForUser = (request, response) => {
       return elem.attributes?.customer_name == customerName;
     })
 
-    console.log(filteredResults);
-    response.status(200).json(filteredResults);
+    groupInt = utils.getRndInteger(0, 1)
+    groupLetter = groupInt == 1 ? "A": "B";
+    testResponse = {'testGroup': groupLetter, 'tests': filteredResults}
+    // TODO: actually we should have a table to save/retrieve this, so the same user will always have the same group for a given test
+    response.status(200).json(testResponse);
   })
 }
 
