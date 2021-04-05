@@ -9,7 +9,7 @@ export const postEvent = async (name, group, user_id) => {
 	    * attributes VARCHAR(100),
       */
     let event = {
-      'name': name,
+      'event_name': name,
       'test_group': group,  // must get from fetchTests
       'attributes': user_id // should rename this column on our DB
     }

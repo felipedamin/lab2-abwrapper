@@ -34,12 +34,14 @@ const registerEvent = (request, response) => {
   const { event_name, test_group, attributes } = request.body
   now = new Date();
 
-  db.query('INSERT INTO events (event_name, test_group, attributes, created_on) VALUES ($1, $2, $3, $4)', [event_name, test_group, attributes, now], (error, results) => {
+  db.query('INSERT INTO events (id, event_name, test_group, attributes, created_on) VALUES (DEFAULT, $1, $2, $3, $4)', [event_name, test_group, attributes, now], (error, results) => {
     if (error) {
       throw error
     }
-    console.log(`event added: ${event_name, test_group, attributes}`)
-    response.status(201).send(`Event added with ID: ${results.insertId}`)
+    else {
+      console.log(`event added: ${event_name, test_group, attributes}`)
+      response.status(201).send(`Event added: ${results}`)
+    }
   })
 }
 
