@@ -2,6 +2,7 @@ const express = require('express')
 var cors = require('cors')
 var usersRouter = require('./src/routes/users');
 var eventsRouter = require('./src/routes/events');
+var statsRouter = require('./src/routes/stats');
 
 const app = express()
 app.use(cors())
@@ -17,6 +18,7 @@ app.get('/', function(req, res) {
 
 app.use('/users', usersRouter);
 app.use('/events', eventsRouter);
+app.use('/stats', statsRouter);
 
 
 app.listen(port, () => {

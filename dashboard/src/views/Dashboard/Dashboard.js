@@ -21,14 +21,26 @@ import React from "react";
 // react plugin for creating charts
 import ChartistGraph from "react-chartist";
 import {
-  completedTasksChart, dailySalesChart,
+  dailySalesChart,
   emailsSubscriptionChart
 } from "variables/charts.js";
+import { getTotalEventsChartByName } from "variables/stats.js";
 
 const useStyles = makeStyles(styles);
 
 export default function Dashboard() {
   const classes = useStyles();
+  
+  // Get chart data for the "retry" event
+  let [totalEventsByNameChart, setTotalEventsByNameChart] = React.useState({});
+  React.useEffect(() => {
+    fetchTotalEventsByNameChart()
+  }, [])
+  async function fetchTotalEventsByNameChart() {
+    const totalEventsChartByName = await getTotalEventsChartByName("retry");
+    setTotalEventsByNameChart(totalEventsChartByName);
+  }
+
   return (
     <div>
       <GridContainer>
@@ -123,15 +135,15 @@ export default function Dashboard() {
             <CardHeader color="danger">
               <ChartistGraph
                 className="ct-chart"
-                data={completedTasksChart().data}
-                type="Line"
-                options={completedTasksChart().options}
-                listener={completedTasksChart().animation}
+                data={totalEventsByNameChart?.data}
+                type="Bar"
+                options={totalEventsByNameChart?.options}
+                listener={totalEventsByNameChart?.animation}
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Grafico do beo</h4>
-              <p className={classes.cardCategory}>Last Campaign Performance</p>
+              <h4 className={classes.cardTitle}>Total de "retry"</h4>
+              <p className={classes.cardCategory}>Total de "retry" por grupo</p>
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>
@@ -197,10 +209,10 @@ export default function Dashboard() {
             <CardHeader color="danger">
               <ChartistGraph
                 className="ct-chart"
-                data={completedTasksChart.data}
+                data={totalEventsByNameChart?.data}
                 type="Line"
-                options={completedTasksChart.options}
-                listener={completedTasksChart.animation}
+                options={totalEventsByNameChart?.options}
+                listener={totalEventsByNameChart?.animation}
               />
             </CardHeader>
             <CardBody>
