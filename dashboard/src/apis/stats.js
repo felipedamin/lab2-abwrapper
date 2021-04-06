@@ -15,7 +15,7 @@ export const getAllEventsByName = async (name) => {
 // backend fandangos
 const STAT_BACKEND_API = "http://54.89.181.51:8080/api";
 export const getEventPositiveSeries = async(group) => {
-    return (await axios.get(`${STAT_BACKEND_API}/series/group/${group}n`)).data
+    return (await axios.get(`${STAT_BACKEND_API}/series/group/${group}`)).data
 }
 export const getEventNegativeSeries = async(group) => {
     return (await axios.get(`${STAT_BACKEND_API}/series/group/${group}n`)).data
