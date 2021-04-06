@@ -23,7 +23,8 @@ import ChartistGraph from "react-chartist";
 import {
   dailySalesChart,
   emailsSubscriptionChart,
-  eventPositiveSeriesGroupChart
+  eventPositiveSeriesGroupChart,
+  eventNegativeSeriesGroupChart
 } from "../../variables/charts.js";
 import { getTotalEventsChartByName } from "variables/stats.js";
 
@@ -33,6 +34,7 @@ export default function Dashboard() {
   const classes = useStyles();
 
   // Time series data
+  // Positive series
   //A
   let [getEventPositiveSeriesGroupChartA, setPositiveEventSeriesA] = React.useState({});
   async function fetchPositiveSeriesA() {
@@ -46,13 +48,32 @@ export default function Dashboard() {
     const positiveEventSeriesB = await eventPositiveSeriesGroupChart("b");
     setPositiveEventSeriesB(positiveEventSeriesB);
   }
-  
+
+  // Negative series
+  //A
+  let [getEventNegativeSeriesGroupChartA, setNegativeEventSeriesA] = React.useState({});
+  async function fetchNegativeSeriesA() {
+    const negativeEventSeriesA = await eventNegativeSeriesGroupChart("a");
+    setNegativeEventSeriesA(negativeEventSeriesA);
+  }
+
+  //B
+  let [getEventNegativeSeriesGroupChartB, setNegativeEventSeriesB] = React.useState({});
+  async function fetchNegativeSeriesB() {
+    const positiveEventSeriesB = await eventNegativeSeriesGroupChart("b");
+    setNegativeEventSeriesB(positiveEventSeriesB);
+  }
+
+
   // Get chart data for the "retry" event
   let [totalEventsByNameChart, setTotalEventsByNameChart] = React.useState({});
   React.useEffect(() => {
     fetchTotalEventsByNameChart();
     fetchPositiveSeriesA();
     fetchPositiveSeriesB();
+    fetchNegativeSeriesA();
+    fetchNegativeSeriesB();
+
   }, [])
   async function fetchTotalEventsByNameChart() {
     const totalEventsChartByName = await getTotalEventsChartByName("retry");
@@ -99,19 +120,19 @@ export default function Dashboard() {
         </GridItem>
       </GridContainer>
       <GridContainer>
-        {/* <GridItem xs={12} sm={12} md={4}>
+        { <GridItem xs={12} sm={12} md={4}>
           <Card chart>
             <CardHeader color="success">
               <ChartistGraph
                 className="ct-chart"
-                data={dailySalesChart.data}
+                data={getEventNegativeSeriesGroupChartA?.data}
                 type="Line"
-                options={dailySalesChart.options}
-                listener={dailySalesChart.animation}
+                options={getEventNegativeSeriesGroupChartA.options}
+                listener={getEventNegativeSeriesGroupChartA.animation}
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Daily Sales in Group A</h4>
+              <h4 className={classes.cardTitle}>Eventos negativos no Grupo A</h4>
               <p className={classes.cardCategory}>
                 <span className={classes.successText}>
                   <ArrowUpward className={classes.upArrowCardCategory} /> 55%
@@ -125,7 +146,7 @@ export default function Dashboard() {
               </div>
             </CardFooter>
           </Card>
-        </GridItem> */}
+        </GridItem> }
         <GridItem xs={12} sm={12} md={4}>
           <Card chart>
             <CardHeader color="warning">
@@ -173,19 +194,19 @@ export default function Dashboard() {
         </GridItem>
       </GridContainer>
       <GridContainer>
-        {/* <GridItem xs={12} sm={12} md={4}>
+        { <GridItem xs={12} sm={12} md={4}>
           <Card chart>
             <CardHeader color="success">
               <ChartistGraph
                 className="ct-chart"
-                data={dailySalesChart.data}
+                data={getEventNegativeSeriesGroupChartB.data}
                 type="Line"
-                options={dailySalesChart.options}
-                listener={dailySalesChart.animation}
+                options={getEventNegativeSeriesGroupChartB.options}
+                listener={getEventNegativeSeriesGroupChartB.animation}
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Daily Sales in Group B</h4>
+              <h4 className={classes.cardTitle}>Eventos negativos no Grupo B</h4>
               <p className={classes.cardCategory}>
                 <span className={classes.successText}>
                   <ArrowUpward className={classes.upArrowCardCategory} /> 55%
@@ -199,7 +220,7 @@ export default function Dashboard() {
               </div>
             </CardFooter>
           </Card>
-        </GridItem> */}
+        </GridItem> }
         { <GridItem xs={12} sm={12} md={4}>
           <Card chart>
             <CardHeader color="warning">

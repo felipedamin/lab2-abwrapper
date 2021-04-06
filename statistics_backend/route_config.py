@@ -13,7 +13,7 @@ SQL_FULL_AGG = '''
     FROM public.agg_stock_daily_events;
 '''
 
-SQL_SERIES_GROUP = '''
+SQL_POS_SERIES_GROUP = '''
     SELECT
         bucket_date,
         event_name,
@@ -22,6 +22,17 @@ SQL_SERIES_GROUP = '''
     FROM public.agg_stock_daily_events
     WHERE test_group = '{group_name}'
             AND event_name = 'positive';
+'''
+
+SQL_NEG_SERIES_GROUP = '''
+    SELECT
+        bucket_date,
+        event_name,
+        test_group,
+        n_events
+    FROM public.agg_stock_daily_events
+    WHERE test_group = '{group_name}'
+            AND event_name = 'negative';
 '''
 
 
@@ -37,7 +48,7 @@ def get_aggs():
 def get_positive_series_a():
     conf = get_config()
     with psycopg2.connect(**conf) as conn:
-        df = pd.read_sql(SQL_SERIES_GROUP.format(group_name='A'), conn).sort_values(by='bucket_date')
+        df = pd.read_sql(SQL_POS_SERIES_GROUP.format(group_name='A'), conn).sort_values(by='bucket_date')
 
     response = {
             'labels': list(x.strftime('%Y-%m-%d') for x in df['bucket_date'].values),
@@ -52,7 +63,38 @@ def get_positive_series_a():
 def get_positive_series_b():
     conf = get_config()
     with psycopg2.connect(**conf) as conn:
-        df = pd.read_sql(SQL_SERIES_GROUP.format(group_name='B'), conn).sort_values(by='bucket_date')
+        df = pd.read_sql(SQL_POS_SERIES_GROUP.format(group_name='B'), conn).sort_values(by='bucket_date')
+
+    response = {
+            'labels': list(x.strftime('%Y-%m-%d') for x in df['bucket_date'].values),
+            'series': [list(int(x) for x in df['n_events'].values)]
+        }
+
+
+    response = make_response(jsonify(response), 200)
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
+
+@app.route('/api/series/group/an')
+def get_negative_series_a():
+    conf = get_config()
+    with psycopg2.connect(**conf) as conn:
+        df = pd.read_sql(SQL_NEG_SERIES_GROUP.format(group_name='A'), conn).sort_values(by='bucket_date')
+
+    response = {
+            'labels': list(x.strftime('%Y-%m-%d') for x in df['bucket_date'].values),
+            'series': [list(int(x) for x in df['n_events'].values)]
+        }
+
+    response = make_response(jsonify(response), 200)
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
+
+@app.route('/api/series/group/bn')
+def get_negative_series_b():
+    conf = get_config()
+    with psycopg2.connect(**conf) as conn:
+        df = pd.read_sql(SQL_NEG_SERIES_GROUP.format(group_name='B'), conn).sort_values(by='bucket_date')
 
     response = {
             'labels': list(x.strftime('%Y-%m-%d') for x in df['bucket_date'].values),
