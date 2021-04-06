@@ -244,7 +244,7 @@ export default function Dashboard() {
             </CardFooter>
           </Card>
         </GridItem> }
-        <GridItem xs={12} sm={12} md={4}>
+        {/* <GridItem xs={12} sm={12} md={4}>
           <Card chart>
             <CardHeader color="danger">
               <ChartistGraph
@@ -265,10 +265,10 @@ export default function Dashboard() {
               </div>
             </CardFooter>
           </Card>
-        </GridItem>
+        </GridItem> */}
       </GridContainer>
       <GridContainer>
-        <GridItem xs={12} sm={12} md={6}>
+        {/* <GridItem xs={12} sm={12} md={6}>
           <Card>
             <CardHeader color="info">
               <h4 className={classes.cardTitleWhite}>Total Group A</h4>
@@ -311,7 +311,7 @@ export default function Dashboard() {
               />
             </CardBody>
           </Card>
-        </GridItem>
+        </GridItem> */}
       </GridContainer>
     </div>
   );
