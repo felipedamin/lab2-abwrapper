@@ -131,11 +131,11 @@ export default function Dashboard() {
             <CardHeader color="warning">
               <ChartistGraph
                 className="ct-chart"
-                data={getEventPositiveSeriesGroupChartA.data}
+                data={getEventPositiveSeriesGroupChartA?.data}
                 type="Bar"
-                options={getEventPositiveSeriesGroupChartA.options}
-                responsiveOptions={getEventPositiveSeriesGroupChartA.responsiveOptions}
-                listener={getEventPositiveSeriesGroupChartA.animation}
+                options={getEventPositiveSeriesGroupChartA?.options}
+                responsiveOptions={getEventPositiveSeriesGroupChartA?.responsiveOptions}
+                listener={getEventPositiveSeriesGroupChartA?.animation}
               />
             </CardHeader>
             <CardBody>

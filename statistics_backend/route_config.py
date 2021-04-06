@@ -39,15 +39,14 @@ def get_positive_series_a():
     with psycopg2.connect(**conf) as conn:
         df = pd.read_sql(SQL_SERIES_GROUP.format(group_name='A'), conn)
 
-    response = {'data':
-        {
+    response = {
             'labels': list(x.strftime('%Y-%m-%d') for x in df['bucket_date'].values),
-            'series': list(int(x) for x in df['n_events'].values)
+            'series': [list(int(x) for x in df['n_events'].values)]
         }
-    }
 
-    return make_response(jsonify(response), 200)
-
+    response = make_response(jsonify(response), 200)
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 @app.route('/api/series/group/b')
 def get_positive_series_b():
@@ -55,11 +54,12 @@ def get_positive_series_b():
     with psycopg2.connect(**conf) as conn:
         df = pd.read_sql(SQL_SERIES_GROUP.format(group_name='B'), conn)
 
-    response = {'data':
-        {
+    response = {
             'labels': list(x.strftime('%Y-%m-%d') for x in df['bucket_date'].values),
-            'series': list(int(x) for x in df['n_events'].values)
+            'series': [list(int(x) for x in df['n_events'].values)]
         }
-    }
 
-    return make_response(jsonify(response), 200)
+
+    response = make_response(jsonify(response), 200)
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response

@@ -134,7 +134,10 @@ export const emailsSubscriptionChart = {
 // async function to return the populated chart
 export async function eventPositiveSeriesGroupChart(group) {
   const chartData = await getEventPositiveSeries(group)
-
+  const maxValue = Math.max(chartData.series)
+  console.log(maxValue)
+  console.log('vai toma')
+  console.log(chartData)
   return {
     data: chartData,
     options: {
@@ -142,7 +145,7 @@ export async function eventPositiveSeriesGroupChart(group) {
         showGrid: false
       },
       low: 0,
-      high: 1000,
+      high: maxValue + 0.2*maxValue,
       chartPadding: {
         top: 0,
         right: 5,
