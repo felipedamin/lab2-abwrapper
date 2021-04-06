@@ -22,7 +22,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import moment from 'moment';
 import FormDialog from '../src/Modal';
 
-const url = "http://localhost:3002/customertests/";
+export const url = "http://localhost:3002/customertests/";
 
 const useStyles = makeStyles((theme) => ({
   root: {

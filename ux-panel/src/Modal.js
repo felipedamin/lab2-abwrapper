@@ -4,20 +4,14 @@ import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
-import EditIcon from '@material-ui/icons/Edit';
 import AddIcon from '@material-ui/icons/Add';
 import axios from 'axios';
-import Checkbox from '@material-ui/core/Checkbox';
-
-const url = "http://localhost:3002/customertests/new-test";
+import { url } from '../src/App';
 
 export default function FormDialog({attributes}) {
   const [open, setOpen] = React.useState(false);
-
-//   const [params, setParams] = React.useState(attributes);
 
   let params = {}
 
@@ -30,9 +24,8 @@ export default function FormDialog({attributes}) {
   };
 
   const handleConfirm = () => {
-    // setParams(newParams);
     setOpen(false);
-    axios.post(`${url}`, params).then(response => {
+    axios.post(`${url}/new-test`, params).then(response => {
       const tests = response.data;
 
       console.log(params)
