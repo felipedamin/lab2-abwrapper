@@ -153,7 +153,7 @@ export default function Dashboard() {
               <ChartistGraph
                 className="ct-chart"
                 data={getEventPositiveSeriesGroupChartA?.data}
-                type="Bar"
+                type="Line"
                 options={getEventPositiveSeriesGroupChartA?.options}
                 responsiveOptions={getEventPositiveSeriesGroupChartA?.responsiveOptions}
                 listener={getEventPositiveSeriesGroupChartA?.animation}
@@ -227,7 +227,7 @@ export default function Dashboard() {
               <ChartistGraph
                 className="ct-chart"
                 data={getEventPositiveSeriesGroupChartB?.data}
-                type="Bar"
+                type="Line"
                 options={getEventPositiveSeriesGroupChartB?.options}
                 responsiveOptions={getEventPositiveSeriesGroupChartB?.responsiveOptions}
                 listener={getEventPositiveSeriesGroupChartB?.animation}
@@ -250,7 +250,7 @@ export default function Dashboard() {
               <ChartistGraph
                 className="ct-chart"
                 data={totalEventsByNameChart?.data}
-                type="Line"
+                type="Bar"
                 options={totalEventsByNameChart?.options}
                 listener={totalEventsByNameChart?.animation}
               />
