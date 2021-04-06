@@ -19,6 +19,8 @@ export default function FormDialog({attributes}) {
 
 //   const [params, setParams] = React.useState(attributes);
 
+  let params = {}
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -30,14 +32,12 @@ export default function FormDialog({attributes}) {
   const handleConfirm = () => {
     // setParams(newParams);
     setOpen(false);
-    // axios.post(`${url}`).then(response => {
-    //   const tests = response.data;
-    //   console.log(tests)
-    // })
-    console.log(params)
-  }
+    axios.post(`${url}`, params).then(response => {
+      const tests = response.data;
 
-  let params = {}
+      console.log(params)
+    })
+  }
 
   return (
     <div>
@@ -58,7 +58,6 @@ export default function FormDialog({attributes}) {
                 ...params,
                 test_name: e.target.value
             }}
-            // defaultValue={JSON.stringify(params.group_a)}
           />
           <TextField
             autoFocus
@@ -69,9 +68,8 @@ export default function FormDialog({attributes}) {
             multiline
             onBlur={e => params = {
                 ...params,
-                active: e.target.value
+                active: true
             }}
-            // defaultValue={JSON.stringify(params.group_a)}
           />
           <TextField
             autoFocus
@@ -82,9 +80,8 @@ export default function FormDialog({attributes}) {
             multiline
             onBlur={e => params = {
                 ...params,
-                mobileOnly: e.target.value
+                mobileOnly: false
             }}
-            // defaultValue={JSON.stringify(params.group_a)}
           />
           <TextField
             autoFocus
@@ -96,9 +93,11 @@ export default function FormDialog({attributes}) {
             multiline
             onBlur={event => params = {
                 ...params,
-                customer_name: event.target.value
+                attributes: {
+                    ...params.attributes,
+                    customer_name: event.target.value,
+                }
             }}
-            // defaultValue={JSON.stringify(params.group_a)}
           />
           <TextField
             autoFocus
@@ -108,14 +107,13 @@ export default function FormDialog({attributes}) {
             type="text"
             fullWidth
             multiline
-            onChange={e => params = {
+            onBlur={e => params = {
                 ...params,
                 attributes: {
                     ...params.attributes,
-                    group_a: e.target.value
+                    group_a: JSON.parse(e.target.value)
                 }
             }}
-            // defaultValue={JSON.stringify(params.group_a)}
           />
           <TextField
             autoFocus
@@ -125,14 +123,13 @@ export default function FormDialog({attributes}) {
             type="text"
             fullWidth
             multiline
-            onChange={e => params = {
+            onBlur={e => params = {
                 ...params,
                 attributes: {
                     ...params.attributes,
-                    group_b: e.target.value
+                    group_b: JSON.parse(e.target.value)
                 }
             }}
-            // defaultValue={JSON.stringify(params.group_b)}
           />
         </DialogContent>
         <DialogActions>
