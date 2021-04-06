@@ -37,7 +37,7 @@ def get_aggs():
 def get_positive_series_a():
     conf = get_config()
     with psycopg2.connect(**conf) as conn:
-        df = pd.read_sql(SQL_SERIES_GROUP.format(group_name='A'), conn)
+        df = pd.read_sql(SQL_SERIES_GROUP.format(group_name='A'), conn).sort_values(by='bucket_date')
 
     response = {
             'labels': list(x.strftime('%Y-%m-%d') for x in df['bucket_date'].values),
@@ -52,7 +52,7 @@ def get_positive_series_a():
 def get_positive_series_b():
     conf = get_config()
     with psycopg2.connect(**conf) as conn:
-        df = pd.read_sql(SQL_SERIES_GROUP.format(group_name='B'), conn)
+        df = pd.read_sql(SQL_SERIES_GROUP.format(group_name='B'), conn).sort_values(by='bucket_date')
 
     response = {
             'labels': list(x.strftime('%Y-%m-%d') for x in df['bucket_date'].values),
