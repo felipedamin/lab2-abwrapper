@@ -4,12 +4,17 @@ import meme from './bugs.png'
 
 const Demo = () => {
   let [group, setGroup] = React.useState("");
+  let [testParams, setTestParams] = React.useState({});
   let [tracked, setTracked] = React.useState(false);
 
   React.useEffect(() => {
     fetchGroup();
     abwrapper.track("page-view");
   }, [])
+
+  React.useEffect(() => {
+    setTestParams(localStorage.getItem('params'))
+  }, [group])
 
   async function fetchGroup() {
     await abwrapper.init('example', 1);

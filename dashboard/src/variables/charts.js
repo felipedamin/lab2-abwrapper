@@ -16,7 +16,7 @@ var delays2 = 80,
 // // // Daily Sales
 // #############################
 
-const dailySalesChart = {
+export const dailySalesChart = {
   data: {
     labels: ["M", "T", "W", "T", "F", "S", "S"],
     series: [[12, 17, 7, 17, 23, 18, 38]]
@@ -70,7 +70,7 @@ const dailySalesChart = {
 // // // Email Subscriptions
 // #############################
 
-const emailsSubscriptionChart = {
+export const emailsSubscriptionChart = {
   data: {
     labels: [
       "Jan",
@@ -131,13 +131,9 @@ const emailsSubscriptionChart = {
   }
 };
 
-
-
 // async function to return the populated chart
-
-async function eventPositiveSeriesGroupChart(group) {
-
-  const chartData = getEventPositiveSeries(group)
+export async function eventPositiveSeriesGroupChart(group) {
+  const chartData = await getEventPositiveSeries(group)
 
   return {
     data: chartData,
@@ -183,10 +179,4 @@ async function eventPositiveSeriesGroupChart(group) {
       }
     }
   };
-  }
-
-module.exports = {
-  dailySalesChart,
-  emailsSubscriptionChart,
-  eventPositiveSeriesGroupChart
-};
+}
