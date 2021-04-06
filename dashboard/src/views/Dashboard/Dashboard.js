@@ -22,24 +22,43 @@ import React from "react";
 import ChartistGraph from "react-chartist";
 import {
   dailySalesChart,
-  emailsSubscriptionChart
-} from "variables/charts.js";
+  emailsSubscriptionChart,
+  eventPositiveSeriesGroupChart
+} from "../../variables/charts.js";
 import { getTotalEventsChartByName } from "variables/stats.js";
 
 const useStyles = makeStyles(styles);
 
 export default function Dashboard() {
   const classes = useStyles();
+
+  // Time series data
+  //A
+  let [getEventPositiveSeriesGroupChartA, setPositiveEventSeriesA] = React.useState({});
+  async function fetchPositiveSeriesA() {
+    const positiveEventSeriesA = await eventPositiveSeriesGroupChart("a");
+    setPositiveEventSeriesA(positiveEventSeriesA);
+  }
+
+  //B
+  let [getEventPositiveSeriesGroupChartB, setPositiveEventSeriesB] = React.useState({});
+  async function fetchPositiveSeriesB() {
+    const positiveEventSeriesB = await eventPositiveSeriesGroupChart("b");
+    setPositiveEventSeriesB(positiveEventSeriesB);
+  }
   
   // Get chart data for the "retry" event
   let [totalEventsByNameChart, setTotalEventsByNameChart] = React.useState({});
   React.useEffect(() => {
-    fetchTotalEventsByNameChart()
+    fetchTotalEventsByNameChart();
+    fetchPositiveSeriesA();
+    fetchPositiveSeriesB();
   }, [])
   async function fetchTotalEventsByNameChart() {
     const totalEventsChartByName = await getTotalEventsChartByName("retry");
     setTotalEventsByNameChart(totalEventsChartByName);
   }
+
 
   return (
     <div>
@@ -112,15 +131,15 @@ export default function Dashboard() {
             <CardHeader color="warning">
               <ChartistGraph
                 className="ct-chart"
-                data={emailsSubscriptionChart.data}
+                data={getEventPositiveSeriesGroupChartA.data}
                 type="Bar"
-                options={emailsSubscriptionChart.options}
-                responsiveOptions={emailsSubscriptionChart.responsiveOptions}
-                listener={emailsSubscriptionChart.animation}
+                options={getEventPositiveSeriesGroupChartA.options}
+                responsiveOptions={getEventPositiveSeriesGroupChartA.responsiveOptions}
+                listener={getEventPositiveSeriesGroupChartA.animation}
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Email Subscriptions in Group A</h4>
+              <h4 className={classes.cardTitle}>Eventos positivos no Grupo A</h4>
               <p className={classes.cardCategory}>Last Campaign Performance</p>
             </CardBody>
             <CardFooter chart>
