@@ -1,0 +1,7 @@
+
+|O que| Entrega |
+|--|--|
+| Qual foi o resultado da atividade (produtos gerados)? |Configuração do Pipeline, porém sem sucesso|
+| Poste aqui o resultado da sua contribuição nesta atividade |Pipeline não funcionou, ocorreu algum problema na implementação que não consegui resolver|
+
+ 
