@@ -200,20 +200,20 @@ export default function Dashboard() {
             </CardFooter>
           </Card>
         </GridItem> */}
-        {/* <GridItem xs={12} sm={12} md={4}>
+        { <GridItem xs={12} sm={12} md={4}>
           <Card chart>
             <CardHeader color="warning">
               <ChartistGraph
                 className="ct-chart"
-                data={emailsSubscriptionChart.data}
+                data={getEventPositiveSeriesGroupChartB?.data}
                 type="Bar"
-                options={emailsSubscriptionChart.options}
-                responsiveOptions={emailsSubscriptionChart.responsiveOptions}
-                listener={emailsSubscriptionChart.animation}
+                options={getEventPositiveSeriesGroupChartB?.options}
+                responsiveOptions={getEventPositiveSeriesGroupChartB?.responsiveOptions}
+                listener={getEventPositiveSeriesGroupChartB?.animation}
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Email Subscriptions in Group B</h4>
+              <h4 className={classes.cardTitle}>Eventos positivos no Grupo B</h4>
               <p className={classes.cardCategory}>Last Campaign Performance</p>
             </CardBody>
             <CardFooter chart>
@@ -222,7 +222,7 @@ export default function Dashboard() {
               </div>
             </CardFooter>
           </Card>
-        </GridItem> */}
+        </GridItem> }
         <GridItem xs={12} sm={12} md={4}>
           <Card chart>
             <CardHeader color="danger">
