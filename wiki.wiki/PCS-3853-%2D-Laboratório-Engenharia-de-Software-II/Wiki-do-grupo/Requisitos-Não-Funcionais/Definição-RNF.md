@@ -9,9 +9,12 @@ Figura ilustrando a abordagem caixa preta.
 
 Portanto, no quesito performance, queremos garantir as seguintes métricas, que consideramos importantes para o funcionamento de nossa plataforma:
 
-Tempo de resposta: Quanto tempo a página do usuário demora para carregar no navegador; quanto tempo os gráficos e os dados no dashboard demoram para serem apresentados; quando novos testes são adicionados, quanto tempo eles levarão para aparecer no dashboard.
-Fluxo máximo de informação: Quantas transações podem ser executadas simultaneamente no nosso sistema.
-
+- Tempo de resposta: Quanto tempo a página do usuário demora para carregar no navegador; quanto tempo os gráficos e os dados no dashboard demoram para serem apresentados; quando novos testes são adicionados, quanto tempo eles levarão para aparecer no dashboard.
+- Fluxo máximo de informação: Quantas transações podem ser executadas simultaneamente no nosso sistema.
+- Ambiente de produção: O comportamento no sistema no ambiente de produção deve ser o mesmo que no ambiente de desenvolvimento e teste.
+- Tempo de processamento: Tempo de cálculo das agregações e cáculos estatísticos no backend de estatística deve ser suficiente baixo para garantir a sincronia dos dados mostrados para o usuário, de uma forma geral, melhorar sua experiência.
+- Interoperabilidade: Verificar que o nosso sistema interage bem com as aplicações que ele vai testar.
+- ETL: Tempo de execução das ETLs contidas no nosso banco de dados. Extração das métricas de site da aplicação testada, cálculo das aggregações e disponibilidade dos resultados.
 
 
 ## Segurança
