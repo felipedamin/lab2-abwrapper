@@ -9,10 +9,16 @@ Usabilidade é o RNF que mede se o sistema está pronto para ser utilizado pelo 
 Segurança deve garantir que o sistema não pode ser acessado por quem não possui acesso, o micro serviço deve realizar uma separação por empresas e deve apenas permitir o acesso por pessoas autorizadas.  
 
 ------------------------------
-Aplicação: 
+**Aplicação: Componentes da dashboard**
 
-Micro-serviço de eventos:
+**Dashboard(FE): RNF de Baixa Latência**
 
-Dashboard:
+O aplicativo deve executar rapidamente promovendo uma sensação de agilidade ao usuário.
 
-Micro-serviço de estatística:
+**Dashboard(FE) e Micro-serviço de estatística(BE): Escalabilidade de features**
+
+O aplicativo deve ser desenvolvido de uma forma flexível para ter espaço para crescer e ganhar novas features de forma organizada e escalável.
+
+**Micro-serviço de estatística(BE): Escalabilidade de dados**
+
+O aplicativo deve suportar analisar um volume muito grande de dados e ter um tempo de resposta quase tão bom quanto se ele estivesse analisando um volume pequeno de dados.
