@@ -1,5 +1,4 @@
-
-|O que| Entrega |
+| O que | Entrega |
 |--|--|
-| Qual foi o resultado da atividade (produtos gerados)? |Componentes da Dashboard integrados ao Micro Serviço de Estatísticas|
-| Poste aqui o resultado da sua contribuição nesta atividade |Conseguimos incluir mais um serviço do projeto|
+| Qual foi o resultado da atividade (produtos gerados)? | Adaptar o front end e o back end para que fique mais escalável |
+| Poste aqui o resultado da sua contribuição nesta atividade | Ambos o front e o back end foram reorganizados para terem mais separação de responsabilidades de forma a promover um crescimento mais organizado no programa |
