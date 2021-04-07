@@ -7,13 +7,20 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
 import axios from 'axios';
 import { url } from '../src/App';
 
-export default function FormDialog({attributes}) {
+export default function FormDialog({testName, active, attributes, type}) {
   const [open, setOpen] = React.useState(false);
 
-  let params = {}
+  let params = {
+    test_name: testName,
+    attributes: {
+      customer_name: attributes?.customer_name,
+    },
+    active,
+  }
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -25,7 +32,7 @@ export default function FormDialog({attributes}) {
 
   const handleConfirm = () => {
     setOpen(false);
-    axios.post(`${url}/new-test`, params).then(response => {
+    axios.post(type === 1 ? `${url}/new-test` : `${url}/update` , params).then(response => {
       const tests = response.data;
 
       console.log(params)
@@ -35,12 +42,13 @@ export default function FormDialog({attributes}) {
   return (
     <div>
       <IconButton aria-label="add" size="small" onClick={handleClickOpen}>
-        <AddIcon />
+        {type === 1 ? <AddIcon /> : <EditIcon />}
       </IconButton>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Add new test</DialogTitle>
+        <DialogTitle id="form-dialog-title">{type === 1 ? 'Add new test' : 'Edit test'}</DialogTitle>
         <DialogContent>
-          <TextField
+          {type === 1 ? 
+          <><TextField
             autoFocus
             margin="dense"
             id="testName"
@@ -51,7 +59,7 @@ export default function FormDialog({attributes}) {
                 ...params,
                 test_name: e.target.value
             }}
-          />
+          /> 
           <TextField
             autoFocus
             margin="dense"
@@ -91,7 +99,7 @@ export default function FormDialog({attributes}) {
                     customer_name: event.target.value,
                 }
             }}
-          />
+          /></> : null}
           <TextField
             autoFocus
             margin="dense"
@@ -100,6 +108,7 @@ export default function FormDialog({attributes}) {
             type="text"
             fullWidth
             multiline
+            defaultValue={JSON.stringify(attributes?.group_a)}
             onBlur={e => params = {
                 ...params,
                 attributes: {
@@ -116,6 +125,7 @@ export default function FormDialog({attributes}) {
             type="text"
             fullWidth
             multiline
+            defaultValue={JSON.stringify(attributes?.group_b)}
             onBlur={e => params = {
                 ...params,
                 attributes: {

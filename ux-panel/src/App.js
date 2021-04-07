@@ -89,6 +89,7 @@ function Row(props) {
                     <TableCell>Customer</TableCell>
                     <TableCell align="right">Group A</TableCell>
                     <TableCell align="right">Group B</TableCell>
+                    <TableCell />
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -99,6 +100,13 @@ function Row(props) {
                     <TableCell>{row.attributes ? row.attributes.customer_name : 'Not Defined'}</TableCell>
                     <TableCell align="right">{row.attributes ? JSON.stringify(row.attributes.group_a) : 'Not Defined'}</TableCell>
                     <TableCell align="right">{row.attributes ? JSON.stringify(row.attributes.group_b) : 'Not Defined'}</TableCell>
+                    <TableCell align="right">
+                      <FormDialog 
+                        testName={row.test_name}
+                        active={row.active}
+                        type={0} 
+                        attributes={row.attributes ? row.attributes : {}}/>
+                    </TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
@@ -124,7 +132,7 @@ function CollapsibleTable({tests}) {
             <TableCell align="right">Active</TableCell>
             <TableCell align="right">Mobile Only</TableCell>
             <TableCell align="right">
-              <FormDialog />
+              <FormDialog type={1} />
             </TableCell>
           </TableRow>
         </TableHead>
