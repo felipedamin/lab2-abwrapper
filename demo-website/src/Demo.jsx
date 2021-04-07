@@ -13,7 +13,7 @@ const Demo = () => {
   }, [])
 
   React.useEffect(() => {
-    setTestParams(localStorage.getItem('params'))
+    setTestParams(JSON.parse(localStorage.getItem('params')))
   }, [group])
 
   async function fetchGroup() {
@@ -35,7 +35,7 @@ const Demo = () => {
   return (
     <div className="App">
       <header className="App-header">
-        { group==='A' && 
+        {/* { group==='A' && 
           <p>group A sees nothing special</p>
         }
         { group==='B' && 
@@ -43,14 +43,18 @@ const Demo = () => {
             <p>Group B can see this programming meme:</p>
             <img src={meme} alt="logo" />
           </div>
-        }
+        } */}
+        <div>
+          <p>{testParams?.text1}</p>
+          {group==='B' && <img src={meme} alt="logo" />}
+        </div>
         { group && !tracked && 
           <div>
             <div>
-              <button name="positive" onClick={(e) => handleClick(e)}>HAPPY!! :)</button>
+              <button name="positive" onClick={(e) => handleClick(e)}>{testParams?.button1}</button>
             </div>
             <div>
-              <button name="negative" onClick={(e) => handleClick(e)}>SAD! :(</button>
+              <button name="negative" onClick={(e) => handleClick(e)}>{testParams?.button2}</button>
             </div>
           </div>
         }

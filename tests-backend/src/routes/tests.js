@@ -19,5 +19,6 @@ router.get('/now', db.getNow);
 router.get('/:id', db.getTestById);
 router.get('/:name/user/:id', db.getTestGroupForUser);
 router.post('/new-test', db.registerNewTest);
+router.post('/update', db.updateExistingTest);
 
 module.exports = router;

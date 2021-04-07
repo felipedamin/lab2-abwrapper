@@ -23,7 +23,9 @@ import ChartistGraph from "react-chartist";
 import {
   dailySalesChart,
   emailsSubscriptionChart,
-  eventPositiveSeriesGroupChart
+  eventPositiveSeriesGroupChart,
+  eventNegativeSeriesGroupChart,
+  eventPositiveDistroChart
 } from "../../variables/charts.js";
 import { getTotalEventsChartByName } from "variables/stats.js";
 
@@ -33,6 +35,7 @@ export default function Dashboard() {
   const classes = useStyles();
 
   // Time series data
+  // Positive series
   //A
   let [getEventPositiveSeriesGroupChartA, setPositiveEventSeriesA] = React.useState({});
   async function fetchPositiveSeriesA() {
@@ -46,13 +49,40 @@ export default function Dashboard() {
     const positiveEventSeriesB = await eventPositiveSeriesGroupChart("b");
     setPositiveEventSeriesB(positiveEventSeriesB);
   }
-  
+
+  // Negative series
+  //A
+  let [getEventNegativeSeriesGroupChartA, setNegativeEventSeriesA] = React.useState({});
+  async function fetchNegativeSeriesA() {
+    const negativeEventSeriesA = await eventNegativeSeriesGroupChart("a");
+    setNegativeEventSeriesA(negativeEventSeriesA);
+  }
+
+  //B
+  let [getEventNegativeSeriesGroupChartB, setNegativeEventSeriesB] = React.useState({});
+  async function fetchNegativeSeriesB() {
+    const positiveEventSeriesB = await eventNegativeSeriesGroupChart("b");
+    setNegativeEventSeriesB(positiveEventSeriesB);
+  }
+
+  // Positive events distribution
+  let [getPositiveDistro, setPositiveDistro] = React.useState({});
+  async function fetchPositiveDistro() {
+    const positiveDistro = await eventPositiveDistroChart();
+    setPositiveDistro(positiveDistro);
+  }
+
+
   // Get chart data for the "retry" event
   let [totalEventsByNameChart, setTotalEventsByNameChart] = React.useState({});
   React.useEffect(() => {
     fetchTotalEventsByNameChart();
     fetchPositiveSeriesA();
     fetchPositiveSeriesB();
+    fetchNegativeSeriesA();
+    fetchNegativeSeriesB();
+    fetchPositiveDistro()
+
   }, [])
   async function fetchTotalEventsByNameChart() {
     const totalEventsChartByName = await getTotalEventsChartByName("retry");
@@ -99,19 +129,19 @@ export default function Dashboard() {
         </GridItem>
       </GridContainer>
       <GridContainer>
-        {/* <GridItem xs={12} sm={12} md={4}>
+        { <GridItem xs={12} sm={12} md={4}>
           <Card chart>
             <CardHeader color="success">
               <ChartistGraph
                 className="ct-chart"
-                data={dailySalesChart.data}
+                data={getEventNegativeSeriesGroupChartA?.data}
                 type="Line"
-                options={dailySalesChart.options}
-                listener={dailySalesChart.animation}
+                options={getEventNegativeSeriesGroupChartA.options}
+                listener={getEventNegativeSeriesGroupChartA.animation}
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Daily Sales in Group A</h4>
+              <h4 className={classes.cardTitle}>Eventos negativos no Grupo A</h4>
               <p className={classes.cardCategory}>
                 <span className={classes.successText}>
                   <ArrowUpward className={classes.upArrowCardCategory} /> 55%
@@ -125,14 +155,14 @@ export default function Dashboard() {
               </div>
             </CardFooter>
           </Card>
-        </GridItem> */}
+        </GridItem> }
         <GridItem xs={12} sm={12} md={4}>
           <Card chart>
             <CardHeader color="warning">
               <ChartistGraph
                 className="ct-chart"
                 data={getEventPositiveSeriesGroupChartA?.data}
-                type="Bar"
+                type="Line"
                 options={getEventPositiveSeriesGroupChartA?.options}
                 responsiveOptions={getEventPositiveSeriesGroupChartA?.responsiveOptions}
                 listener={getEventPositiveSeriesGroupChartA?.animation}
@@ -173,19 +203,19 @@ export default function Dashboard() {
         </GridItem>
       </GridContainer>
       <GridContainer>
-        {/* <GridItem xs={12} sm={12} md={4}>
+        { <GridItem xs={12} sm={12} md={4}>
           <Card chart>
             <CardHeader color="success">
               <ChartistGraph
                 className="ct-chart"
-                data={dailySalesChart.data}
+                data={getEventNegativeSeriesGroupChartB.data}
                 type="Line"
-                options={dailySalesChart.options}
-                listener={dailySalesChart.animation}
+                options={getEventNegativeSeriesGroupChartB.options}
+                listener={getEventNegativeSeriesGroupChartB.animation}
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Daily Sales in Group B</h4>
+              <h4 className={classes.cardTitle}>Eventos negativos no Grupo B</h4>
               <p className={classes.cardCategory}>
                 <span className={classes.successText}>
                   <ArrowUpward className={classes.upArrowCardCategory} /> 55%
@@ -199,21 +229,21 @@ export default function Dashboard() {
               </div>
             </CardFooter>
           </Card>
-        </GridItem> */}
-        {/* <GridItem xs={12} sm={12} md={4}>
+        </GridItem> }
+        { <GridItem xs={12} sm={12} md={4}>
           <Card chart>
             <CardHeader color="warning">
               <ChartistGraph
                 className="ct-chart"
-                data={emailsSubscriptionChart.data}
-                type="Bar"
-                options={emailsSubscriptionChart.options}
-                responsiveOptions={emailsSubscriptionChart.responsiveOptions}
-                listener={emailsSubscriptionChart.animation}
+                data={getEventPositiveSeriesGroupChartB?.data}
+                type="Line"
+                options={getEventPositiveSeriesGroupChartB?.options}
+                responsiveOptions={getEventPositiveSeriesGroupChartB?.responsiveOptions}
+                listener={getEventPositiveSeriesGroupChartB?.animation}
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Email Subscriptions in Group B</h4>
+              <h4 className={classes.cardTitle}>Eventos positivos no Grupo B</h4>
               <p className={classes.cardCategory}>Last Campaign Performance</p>
             </CardBody>
             <CardFooter chart>
@@ -222,20 +252,20 @@ export default function Dashboard() {
               </div>
             </CardFooter>
           </Card>
-        </GridItem> */}
-        <GridItem xs={12} sm={12} md={4}>
+        </GridItem> }
+        { <GridItem xs={12} sm={12} md={4}>
           <Card chart>
             <CardHeader color="danger">
               <ChartistGraph
                 className="ct-chart"
-                data={totalEventsByNameChart?.data}
-                type="Line"
-                options={totalEventsByNameChart?.options}
-                listener={totalEventsByNameChart?.animation}
+                data={getPositiveDistro?.data}
+                type="Bar"
+                options={getPositiveDistro?.options}
+                listener={getPositiveDistro?.animation}
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Products Viewed in Group B</h4>
+              <h4 className={classes.cardTitle}>Total eventos positivos</h4>
               <p className={classes.cardCategory}>Last Campaign Performance</p>
             </CardBody>
             <CardFooter chart>
@@ -244,10 +274,10 @@ export default function Dashboard() {
               </div>
             </CardFooter>
           </Card>
-        </GridItem>
+        </GridItem> }
       </GridContainer>
       <GridContainer>
-        <GridItem xs={12} sm={12} md={6}>
+        {/* <GridItem xs={12} sm={12} md={6}>
           <Card>
             <CardHeader color="info">
               <h4 className={classes.cardTitleWhite}>Total Group A</h4>
@@ -290,7 +320,7 @@ export default function Dashboard() {
               />
             </CardBody>
           </Card>
-        </GridItem>
+        </GridItem> */}
       </GridContainer>
     </div>
   );

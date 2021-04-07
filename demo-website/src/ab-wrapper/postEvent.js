@@ -1,5 +1,5 @@
 import axios from 'axios';
-const EVENTS_BE_URL = 'http://ec2-52-86-73-127.compute-1.amazonaws.com:3001';
+const EVENTS_BE_URL = 'http://ec2-3-84-161-231.compute-1.amazonaws.com:3001';
 
 export const postEvent = async (name, group, user_id) => {
   try {

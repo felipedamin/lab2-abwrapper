@@ -1,5 +1,5 @@
 import axios from 'axios';
-const TESTS_BE_URL = 'http://ec2-52-86-73-127.compute-1.amazonaws.com:3002';
+const TESTS_BE_URL = 'http://ec2-3-84-161-231.compute-1.amazonaws.com:3002';
 
 export const getTests = async (customer_name) => {
   try {
