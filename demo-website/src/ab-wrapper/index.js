@@ -7,7 +7,7 @@ export const init = async (customer_name, user_id) => {
     localStorage.setItem('user_id', user_id);
     const group = await getGroup(customer_name, user_id);
     await localStorage.setItem('group', group.testGroup);
-    await localStorage.setItem('params', group.attributes[`group_${group.toLowerCase()}`]);
+    await localStorage.setItem('params', JSON.stringify(group.tests[0].attributes[`group_${group.testGroup.toLowerCase()}`]));
 
     // we should validate customer's private key;
     return true;
