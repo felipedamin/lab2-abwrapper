@@ -1,7 +1,7 @@
 
 |O que| Entrega |
 |--|--|
-| Qual foi o resultado da atividade (produtos gerados)? |Configuração do Pipeline, porém sem sucesso e início do Front End UX Panel|
-| Poste aqui o resultado da sua contribuição nesta atividade |Pipeline não funcionou, ocorreu algum problema na configuração que não consegui resolver, Front End do UX Panel começou a tomar forma|
+| Qual foi o resultado da atividade (produtos gerados)? |Planejamento e desenvolvimento do banco de dados|
+| Poste aqui o resultado da sua contribuição nesta atividade |Pudemos pensar em qual seria o melhor modelo de dados para a nossa plataforma. Criamos o banco de dados utilizando o serviço RDS para PosgresSQL da AWS.|
 
  
