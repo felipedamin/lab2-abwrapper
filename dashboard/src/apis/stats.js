@@ -20,3 +20,6 @@ export const getEventPositiveSeries = async(group) => {
 export const getEventNegativeSeries = async(group) => {
     return (await axios.get(`${STAT_BACKEND_API}/series/group/${group}n`)).data
 }
+export const getEventPositiveDistro = async() => {
+    return (await axios.get(`${STAT_BACKEND_API}/distros/pos`)).data
+}

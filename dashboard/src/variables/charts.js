@@ -2,7 +2,7 @@
 // // // javascript library for creating charts
 // #############################
 var Chartist = require("chartist");
-const {getEventPositiveSeries, getEventNegativeSeries} = require("../apis/stats");
+const {getEventPositiveSeries, getEventNegativeSeries, getEventPositiveDistro} = require("../apis/stats");
 
 // ##############################
 // // // variables used to create animation on charts
@@ -187,6 +187,59 @@ export async function eventPositiveSeriesGroupChart(group) {
 
 export async function eventNegativeSeriesGroupChart(group) {
   const chartData = await getEventNegativeSeries(group)
+  const maxValue = Math.max(...chartData.series[0])
+  console.log(chartData.series[0])
+  console.log(maxValue)
+  console.log('vai toma')
+  console.log(chartData)
+  return {
+    data: chartData,
+    options: {
+      axisX: {
+        showGrid: false
+      },
+      low: 0,
+      high: maxValue + 0.2*maxValue,
+      chartPadding: {
+        top: 0,
+        right: 5,
+        bottom: 0,
+        left: 0
+      }
+    },
+    responsiveOptions: [
+      [
+        "screen and (max-width: 640px)",
+        {
+          seriesBarDistance: 5,
+          axisX: {
+            labelInterpolationFnc: function(value) {
+              return value[0];
+            }
+          }
+        }
+      ]
+    ],
+    animation: {
+      draw: function(data) {
+        if (data.type === "bar") {
+          data.element.animate({
+            opacity: {
+              begin: (data.index + 1) * delays2,
+              dur: durations2,
+              from: 0,
+              to: 1,
+              easing: "ease"
+            }
+          });
+        }
+      }
+    }
+  };
+}
+
+export async function eventPositiveDistroChart() {
+  const chartData = await getEventPositiveDistro()
   const maxValue = Math.max(...chartData.series[0])
   console.log(chartData.series[0])
   console.log(maxValue)

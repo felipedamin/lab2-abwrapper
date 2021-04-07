@@ -24,7 +24,8 @@ import {
   dailySalesChart,
   emailsSubscriptionChart,
   eventPositiveSeriesGroupChart,
-  eventNegativeSeriesGroupChart
+  eventNegativeSeriesGroupChart,
+  eventPositiveDistroChart
 } from "../../variables/charts.js";
 import { getTotalEventsChartByName } from "variables/stats.js";
 
@@ -64,6 +65,13 @@ export default function Dashboard() {
     setNegativeEventSeriesB(positiveEventSeriesB);
   }
 
+  // Positive events distribution
+  let [getPositiveDistro, setPositiveDistro] = React.useState({});
+  async function fetchPositiveDistro() {
+    const positiveDistro = await eventPositiveDistroChart();
+    setPositiveDistro(positiveDistro);
+  }
+
 
   // Get chart data for the "retry" event
   let [totalEventsByNameChart, setTotalEventsByNameChart] = React.useState({});
@@ -73,6 +81,7 @@ export default function Dashboard() {
     fetchPositiveSeriesB();
     fetchNegativeSeriesA();
     fetchNegativeSeriesB();
+    fetchPositiveDistro()
 
   }, [])
   async function fetchTotalEventsByNameChart() {
@@ -244,19 +253,19 @@ export default function Dashboard() {
             </CardFooter>
           </Card>
         </GridItem> }
-        {/* <GridItem xs={12} sm={12} md={4}>
+        { <GridItem xs={12} sm={12} md={4}>
           <Card chart>
             <CardHeader color="danger">
               <ChartistGraph
                 className="ct-chart"
-                data={totalEventsByNameChart?.data}
+                data={getPositiveDistro?.data}
                 type="Bar"
-                options={totalEventsByNameChart?.options}
-                listener={totalEventsByNameChart?.animation}
+                options={getPositiveDistro?.options}
+                listener={getPositiveDistro?.animation}
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Products Viewed in Group B</h4>
+              <h4 className={classes.cardTitle}>Total eventos positivos</h4>
               <p className={classes.cardCategory}>Last Campaign Performance</p>
             </CardBody>
             <CardFooter chart>
@@ -265,7 +274,7 @@ export default function Dashboard() {
               </div>
             </CardFooter>
           </Card>
-        </GridItem> */}
+        </GridItem> }
       </GridContainer>
       <GridContainer>
         {/* <GridItem xs={12} sm={12} md={6}>
