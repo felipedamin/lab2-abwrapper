@@ -45,16 +45,16 @@ const Demo = () => {
           </div>
         } */}
         <div>
-          <p>{testParams.text1}</p>
+          <p>{testParams?.text1}</p>
           {group==='B' && <img src={meme} alt="logo" />}
         </div>
         { group && !tracked && 
           <div>
             <div>
-              <button name="positive" onClick={(e) => handleClick(e)}>{testParams.button1}</button>
+              <button name="positive" onClick={(e) => handleClick(e)}>{testParams?.button1}</button>
             </div>
             <div>
-              <button name="negative" onClick={(e) => handleClick(e)}>{testParams.button2}</button>
+              <button name="negative" onClick={(e) => handleClick(e)}>{testParams?.button2}</button>
             </div>
           </div>
         }
