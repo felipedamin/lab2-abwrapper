@@ -27,3 +27,5 @@ Utilizamos Frameworks e templates que seguem as melhores práticas de usabilidad
 Utilizamos o RDS da AWS garantindo uma ótima disponibilidade, escalabilidade automática, confiabilidade, coerência, consistência e persistência.
 
 O algoritmo suporta um volume muito grande de dados e tem um tempo de resposta quase tão bom quanto se tivesse um volume pequeno de dados. Para isso utilizamos procedures e otimizamos queries, evitando loops.
+
+Além disso, implementamos uma Data Warehouse que executa agregações intermediárias a partir dos dados brutos de eventos. A partir das agregagões itermediárias, as agregações finais usadas no dashboard podem ser geradas mais rapidamente.
