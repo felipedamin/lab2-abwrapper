@@ -1,7 +1,7 @@
 
 |O que| Entrega |
 |--|--|
-| Qual foi o resultado da atividade (produtos gerados)? |Backend de estatística e procedure de atualização do banco de dados|
-| Poste aqui o resultado da sua contribuição nesta atividade |Backend de estatística perto de sua versão final e procedimento para geração das agregações intermediárias automaticamente no banco de dados|
+| Qual foi o resultado da atividade (produtos gerados)? |Primeira versão do backend de estatística|
+| Poste aqui o resultado da sua contribuição nesta atividade | Primeira versão do backend de estatística, rodando como um micro-serviço.|
 
  
