@@ -1,6 +1,6 @@
 var express = require('express');
 const bodyParser = require('body-parser');
-const db = require('../queries');
+const db = require('../db/queries');
 var router = express.Router();
 
 router.use(bodyParser.json())
@@ -10,9 +10,9 @@ router.use(
   })
 )
 
-router.get('/', (request, response) => {
-  response.json({ info: 'Node.js, Express, and Postgres API' })
-})
+// router.get('/', (request, response) => {
+//   response.json({ info: 'Node.js, Express, and Postgres API' })
+// })
 
 router.get('/users', db.getUsers)
 router.get('/users/:id', db.getUserById)

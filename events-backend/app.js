@@ -1,8 +1,8 @@
 const express = require('express')
 var cors = require('cors')
-var indexRouter = require('./src/routes/index');
 var usersRouter = require('./src/routes/users');
 var eventsRouter = require('./src/routes/events');
+var statsRouter = require('./src/routes/stats');
 
 const app = express()
 app.use(cors())
@@ -12,9 +12,13 @@ app.get('/hello', (req, res) => {
   res.send('Hello World!')
 })
 
-app.use('/', indexRouter);
+app.get('/', function(req, res) {
+  res.send('index page');
+});
+
 app.use('/users', usersRouter);
 app.use('/events', eventsRouter);
+app.use('/stats', statsRouter);
 
 
 app.listen(port, () => {
