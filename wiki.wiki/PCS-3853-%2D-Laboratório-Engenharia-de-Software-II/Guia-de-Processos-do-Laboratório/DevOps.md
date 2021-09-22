@@ -1,1 +1,0 @@
-![ArqDevOps.png](/.attachments/ArqDevOps-73134a6c-bb87-44db-92eb-106e1c51a857.png)

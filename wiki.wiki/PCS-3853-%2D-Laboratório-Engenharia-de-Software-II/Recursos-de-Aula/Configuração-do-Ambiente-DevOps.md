@@ -1,1 +1,0 @@
-Aqui esta disponibilizado o material de apoio para configuração do ambiente de DEVOPS
