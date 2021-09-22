@@ -1,7 +1,7 @@
 {
   "user": "postgres",
   "database": "postgres",
-  "password": "database-projetochave",
-  "host": "projetochave-db-2.cfgi7pik5oym.us-east-1.rds.amazonaws.com",
+  "password": "",
+  "host": "",
   "port": "5432"
 }
