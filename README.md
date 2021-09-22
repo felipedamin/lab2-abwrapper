@@ -9,3 +9,5 @@ Each folder is a different microservice:
 - Another application that is supposed to be used by the product team in order to manage the experiments
 - One statistics engine (unfinished, only does some basic stuff)
 - One demo-website
+
+The dashboard is based on another open source project, check dashboard/package.json for more info
