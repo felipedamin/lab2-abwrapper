@@ -1,1 +1,0 @@
-![ArquiteturaProduto.png](/.attachments/ArquiteturaProduto-ed8523e2-e3b6-4d5e-8b0c-cc21f96113fb.png)
